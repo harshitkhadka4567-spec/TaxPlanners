@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Official Tax Action Finder | Accounting &amp; Tax Planners of NY Inc</title>
+    <meta
+      name="description"
+      content="Official Tax Action Finder with direct official IRS, federal, state, and government tax action links."
+    />
+    <meta name="theme-color" content="#061B36" />
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon-512x512.png">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <link rel="manifest" href="../site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body data-page="tax-help">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" data-header>
+      <nav class="container nav" aria-label="Primary navigation">
+        <a class="brand" href="../" aria-label="Accounting & Tax Planners of NY Inc home">
+          <img src="../assets/images/Logo-cropped-header.png" alt="Accounting & Tax Planners of NY Inc" class="brand-logo" />
+          <span class="brand-text">
+            <span class="brand-name">Accounting &amp; Tax Planners of NY Inc</span>
+            <span class="brand-since">SINCE 1998</span>
+          </span>
+        </a>
+        <button class="nav-toggle menu-toggle" type="button" aria-expanded="false" aria-controls="primary-menu" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-panel" id="primary-menu">
+          <ul class="nav-links">
+            <li><a href="../" data-nav="home">Home</a></li>
+            <li><a href="../services/" data-nav="services">Services</a></li>
+            <li><a href="../resources/" data-nav="resources">Resources</a></li>
+            <li><a href="../tax-help/" data-nav="tax-help">Tax Help</a></li>
+            <li><a href="../about/" data-nav="about">About</a></li>
+            <li><a href="../contact/" data-nav="contact">Contact Us</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="page-hero page-intro page-intro-tax-help">
+        <div class="container page-hero__grid">
+          <div class="reveal">
+            <p class="eyebrow">Tax help</p>
+            <h1>Official Tax Action Finder</h1>
+            <p>Find direct official tax action pages for payments, refund status, notices, forms, sales tax, payroll, FBAR, EIN, and business tax resources.</p>
+          </div>
+          <div class="page-hero__media reveal">
+            <img src="../assets/images/stock-tax-documents.jpg" alt="Tax documents, calculator, and preparation notes on a clean desk" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--gray" id="official-tax-help-finder" data-tax-help-finder>
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Official Tax Action Finder</p>
+            <h2>Official Tax Action Finder</h2>
+            <p>Search for official federal and state tax actions, including payments, refund status, notices, forms, sales tax, payroll, FBAR, EIN, and business tax resources.</p>
+            <p>This is an action-based official link finder. It prioritizes direct government action pages over general state agency homepages.</p>
+          </div>
+
+          <div class="resource-tools reveal" aria-label="Official Tax Action Finder search and filters">
+            <div class="resource-tool-grid">
+              <div class="tax-help-search-field">
+                <label class="search-label" for="tax-help-search">Search official tax actions</label>
+                <input id="tax-help-search" type="search" placeholder="Ask things like NJ refund, CA payment, Texas sales tax, pay IRS, POA, payroll deadlines..." autocomplete="off" />
+                <div class="tax-help-results reveal" aria-live="polite" hidden>
+                  <h3 data-tax-help-heading></h3>
+                  <div data-tax-help-primary></div>
+                  <h3 data-tax-help-related-heading></h3>
+                  <div class="resource-grid resource-grid--finder" data-tax-help-related></div>
+                  <p class="resource-empty" data-tax-help-empty hidden>No matching official tax actions found</p>
+                </div>
+              </div>
+              <div>
+                <label class="search-label" for="tax-help-state">State</label>
+                <select id="tax-help-state" aria-label="Filter by state">
+                  <option value="all">All States</option>
+                  <option value="Alabama">Alabama</option>
+                  <option value="Alaska">Alaska</option>
+                  <option value="Arizona">Arizona</option>
+                  <option value="Arkansas">Arkansas</option>
+                  <option value="California">California</option>
+                  <option value="Colorado">Colorado</option>
+                  <option value="Connecticut">Connecticut</option>
+                  <option value="Delaware">Delaware</option>
+                  <option value="District of Columbia">District of Columbia</option>
+                  <option value="Florida">Florida</option>
+                  <option value="Georgia">Georgia</option>
+                  <option value="Hawaii">Hawaii</option>
+                  <option value="Idaho">Idaho</option>
+                  <option value="Illinois">Illinois</option>
+                  <option value="Indiana">Indiana</option>
+                  <option value="Iowa">Iowa</option>
+                  <option value="Kansas">Kansas</option>
+                  <option value="Kentucky">Kentucky</option>
+                  <option value="Louisiana">Louisiana</option>
+                  <option value="Maine">Maine</option>
+                  <option value="Maryland">Maryland</option>
+                  <option value="Massachusetts">Massachusetts</option>
+                  <option value="Michigan">Michigan</option>
+                  <option value="Minnesota">Minnesota</option>
+                  <option value="Mississippi">Mississippi</option>
+                  <option value="Missouri">Missouri</option>
+                  <option value="Montana">Montana</option>
+                  <option value="Nebraska">Nebraska</option>
+                  <option value="Nevada">Nevada</option>
+                  <option value="New Hampshire">New Hampshire</option>
+                  <option value="New Jersey">New Jersey</option>
+                  <option value="New Mexico">New Mexico</option>
+                  <option value="New York">New York</option>
+                  <option value="North Carolina">North Carolina</option>
+                  <option value="North Dakota">North Dakota</option>
+                  <option value="Ohio">Ohio</option>
+                  <option value="Oklahoma">Oklahoma</option>
+                  <option value="Oregon">Oregon</option>
+                  <option value="Pennsylvania">Pennsylvania</option>
+                  <option value="Rhode Island">Rhode Island</option>
+                  <option value="South Carolina">South Carolina</option>
+                  <option value="South Dakota">South Dakota</option>
+                  <option value="Tennessee">Tennessee</option>
+                  <option value="Texas">Texas</option>
+                  <option value="Utah">Utah</option>
+                  <option value="Vermont">Vermont</option>
+                  <option value="Virginia">Virginia</option>
+                  <option value="Washington">Washington</option>
+                  <option value="West Virginia">West Virginia</option>
+                  <option value="Wisconsin">Wisconsin</option>
+                  <option value="Wyoming">Wyoming</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="quick-topic-group" role="group" aria-label="Helpful quick tax topics">
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="pay IRS">IRS Payment</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="pay state tax">State Payment</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="refund">Refund</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="NY refund">NY Refund</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="NJ refund">NJ Refund</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="CA refund">CA Refund</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="IRS notice">IRS Notice</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="POA">POA</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="payroll deadline">Payroll</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="FBAR">FBAR</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="sales tax">Sales Tax</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="EIN">EIN</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="forms">Forms</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="IRS forms">IRS Forms</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="1040">1040</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="W-9">W-9</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="W-4">W-4</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="2848">2848</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="1120-S">1120-S</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="1065">1065</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="941">941</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="NY forms">NY Forms</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="NJ forms">NJ Forms</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="CA forms">CA Forms</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="sales tax forms">Sales Tax Forms</button>
+              <button class="quick-topic-btn" type="button" data-tax-help-topic="withholding forms">Withholding Forms</button>
+            </div>
+
+            <div class="filter-group" role="group" aria-label="Filter official tax help categories">
+              <button class="filter-btn is-active" type="button" data-tax-help-filter="all">All</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="Federal">Federal</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="State">State</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="Payments">Payments</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="Refunds">Refunds</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="Notices / POA">Notices / POA</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="Payroll">Payroll</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="Sales Tax">Sales Tax</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="Business Tax">Business Tax</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="FBAR / Foreign Accounts">FBAR / Foreign Accounts</button>
+              <button class="filter-btn" type="button" data-tax-help-filter="Forms">Forms</button>
+            </div>
+          </div>
+
+          <p class="note reveal">This tool provides general guidance and official government links. It does not provide legal, tax, accounting, or financial advice. Always verify details with official government websites or contact the office for guidance specific to your situation.</p>
+        </div>
+      </section>
+
+      <section class="section section--gray" id="popular-official-links">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Popular official links</p>
+            <h2>Popular Official Links</h2>
+            <p>Fast links to high-use official tax resources for refunds, payments, notices, authorization, business tax, and state agencies.</p>
+          </div>
+
+          <div class="resource-grid popular-links-grid">
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge">IRS</span><span class="resource-category-label">Refunds</span></div>
+              <h2>IRS Refund Status</h2>
+              <a class="resource-action" href="https://www.irs.gov/refunds" target="_blank" rel="noopener noreferrer">Open Refund Status Page</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge">IRS</span><span class="resource-category-label">Payments</span></div>
+              <h2>IRS Direct Pay</h2>
+              <a class="resource-action" href="https://www.irs.gov/payments/direct-pay" target="_blank" rel="noopener noreferrer">Open Payment Page</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge">EFTPS</span><span class="resource-category-label">Payments</span></div>
+              <h2>EFTPS</h2>
+              <a class="resource-action" href="https://www.eftps.gov" target="_blank" rel="noopener noreferrer">Open Payment Page</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge">IRS</span><span class="resource-category-label">Notices / POA</span></div>
+              <h2>IRS Notices and Letters</h2>
+              <a class="resource-action" href="https://www.irs.gov/individuals/understanding-your-irs-notice-or-letter" target="_blank" rel="noopener noreferrer">Open Official Website</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge">IRS</span><span class="resource-category-label">Notices / POA</span></div>
+              <h2>IRS Form 2848 POA</h2>
+              <a class="resource-action" href="https://www.irs.gov/forms-pubs/about-form-2848" target="_blank" rel="noopener noreferrer">Open Form 2848 Page</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge">IRS</span><span class="resource-category-label">Business Tax</span></div>
+              <h2>IRS EIN Application</h2>
+              <a class="resource-action" href="https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online" target="_blank" rel="noopener noreferrer">Open EIN Application</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge">IRS / FinCEN</span><span class="resource-category-label">FBAR / Foreign Accounts</span></div>
+              <h2>FBAR Guidance</h2>
+              <a class="resource-action" href="https://www.irs.gov/businesses/small-businesses-self-employed/report-of-foreign-bank-and-financial-accounts-fbar" target="_blank" rel="noopener noreferrer">Open FBAR Guidance</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge resource-badge--state">New York State Tax Department</span><span class="resource-category-label">Refunds</span></div>
+              <h2>NY Refund Status</h2>
+              <a class="resource-action resource-action--state" href="https://www.tax.ny.gov/pit/file/refund.htm" target="_blank" rel="noopener noreferrer">Open NY Refund Status Page</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge resource-badge--state">New Jersey Division of Taxation</span><span class="resource-category-label">Refunds</span></div>
+              <h2>NJ Refund Status</h2>
+              <a class="resource-action resource-action--state" href="https://www.nj.gov/treasury/taxation/checkrefundstatus.shtml" target="_blank" rel="noopener noreferrer">Open NJ Refund Status Page</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge resource-badge--state">California Franchise Tax Board</span><span class="resource-category-label">Refunds</span></div>
+              <h2>CA Refund Status</h2>
+              <a class="resource-action resource-action--state" href="https://www.ftb.ca.gov/refund/index.asp" target="_blank" rel="noopener noreferrer">Open CA Refund Status Page</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge resource-badge--state">New York State Tax Department</span><span class="resource-category-label">Payments</span></div>
+              <h2>NY Tax Payments</h2>
+              <a class="resource-action resource-action--state" href="https://www.tax.ny.gov/pay/" target="_blank" rel="noopener noreferrer">Open Payment Page</a>
+            </article>
+            <article class="resource-card popular-link-card reveal">
+              <div class="resource-card__meta"><span class="resource-badge resource-badge--state">FTA</span><span class="resource-category-label">State</span></div>
+              <h2>State Tax Agency Directory</h2>
+              <a class="resource-action resource-action--state" href="https://taxadmin.org/tax-agencies/" target="_blank" rel="noopener noreferrer">Open Official Website</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">IRS &amp; tax updates</p>
+            <h2>General awareness updates</h2>
+            <p>Updates are provided for general awareness. Please verify deadlines with official government sources or contact the office.</p>
+          </div>
+          <div class="update-grid">
+            <article class="update-card reveal"><p>Individual Tax</p><h2>Understanding Estimated Tax Payments</h2><span>Quarterly payments may apply to self-employed taxpayers, business owners, and others with income not fully withheld.</span></article>
+            <article class="update-card reveal"><p>IRS Notices</p><h2>What to Do After Receiving an IRS Notice</h2><span>Identify the notice type, tax year, deadline, and requested response before taking action.</span></article>
+            <article class="update-card reveal"><p>Foreign-Owned Entities</p><h2>Foreign-Owned U.S. Entity Filing Basics</h2><span>Foreign-owned U.S. entities may have federal filing and information-reporting responsibilities.</span></article>
+            <article class="update-card reveal"><p>Business Tax</p><h2>Sales Tax Responsibilities for Businesses</h2><span>Businesses should understand registration, collection, filing frequency, and state-specific rules.</span></article>
+            <article class="update-card reveal"><p>Payroll</p><h2>Payroll Compliance Reminders</h2><span>Payroll compliance may involve deposits, filings, employee forms, and recurring tax reporting obligations.</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--gray" id="deadlines">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Tax deadline center</p>
+            <h2>Common filing and payment dates to monitor</h2>
+          </div>
+          <div class="deadline-grid">
+            <article class="deadline-card reveal"><h2>Individual income tax filing</h2><p>Sample date: April 15</p></article>
+            <article class="deadline-card reveal"><h2>Estimated tax payments</h2><p>Sample dates: April 15, June 15, September 15, January 15</p></article>
+            <article class="deadline-card reveal"><h2>FBAR</h2><p>Sample date: April 15, with automatic extension often available to October 15</p></article>
+            <article class="deadline-card reveal"><h2>Payroll tax deposits</h2><p>Sample timing: Monthly or semiweekly, depending on deposit schedule</p></article>
+            <article class="deadline-card reveal"><h2>Sales tax filing</h2><p>Sample timing: Monthly, quarterly, or annual, depending on state requirements</p></article>
+            <article class="deadline-card reveal"><h2>Business return deadlines</h2><p>Sample dates: March 15 for many partnerships and S corporations; April 15 for many C corporations</p></article>
+          </div>
+          <p class="note reveal">Deadlines may change. Please verify with the IRS, New York State, or contact our office.</p>
+        </div>
+      </section>
+
+      <section class="section section--navy" id="payments">
+        <div class="container payments-grid">
+          <div class="reveal">
+            <p class="eyebrow eyebrow--light">Tax payment instructions</p>
+            <h2>Use official government websites for payments and refund status</h2>
+            <p>This website does not collect tax payments.</p>
+            <p>Verify the correct tax year, form type, and payment category before submitting payments through official government websites.</p>
+          </div>
+          <div class="payment-links reveal" aria-label="Official tax payment links">
+            <a href="https://www.irs.gov/payments/direct-pay" target="_blank" rel="noopener noreferrer">IRS Direct Pay</a>
+            <a href="https://www.eftps.gov" target="_blank" rel="noopener noreferrer">EFTPS</a>
+            <a href="https://www.tax.ny.gov/pay/" target="_blank" rel="noopener noreferrer">New York State Tax Payments</a>
+            <a href="https://www.irs.gov/refunds" target="_blank" rel="noopener noreferrer">IRS Refund Status</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container explainer-grid">
+          <article class="explainer-card reveal" id="ea">
+            <p class="eyebrow">What is an EA?</p>
+            <h2>An Enrolled Agent is federally authorized to represent taxpayers before the IRS</h2>
+            <p>An Enrolled Agent, EA, is a federally authorized tax professional who may represent taxpayers before the IRS. EA representation may assist with IRS notices, correspondence, payment issues, and tax matters.</p>
+          </article>
+          <article class="explainer-card reveal" id="poa">
+            <p class="eyebrow">What is a POA?</p>
+            <h2>Power of Attorney for tax matters is specific and limited</h2>
+            <p>POA stands for Power of Attorney. IRS Form 2848 allows an authorized representative to communicate with tax authorities on behalf of the taxpayer for the specific tax matters, forms, and years listed on the authorization.</p>
+            <p>It does not mean giving control over personal finances generally.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section--gray">
+        <div class="container split">
+          <div class="reveal">
+            <p class="eyebrow">IRS notice help</p>
+            <h2>Received an IRS or state tax notice?</h2>
+            <p>If you received an IRS or state tax notice, do not ignore it. Notices may relate to missing information, balance due, identity verification, filing issues, or account adjustments.</p>
+            <a class="btn btn--primary" href="../contact/">Contact Us</a>
+          </div>
+          <div class="info-card reveal">
+            <h2>Foreign-Owned U.S. Entity Support</h2>
+            <p>The firm supports foreign-owned U.S. entities with tax and compliance guidance, including U.S. entity tax filing, foreign-owned LLC considerations, FBAR-related resources, sales tax considerations, payroll considerations, and estimated tax guidance.</p>
+            <p>This website provides general information only and does not provide legal advice or guarantees.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">FAQ</p>
+            <h2>Common questions</h2>
+          </div>
+          <div class="accordion" data-accordion>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>What documents do I need for tax preparation?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>Common items include income forms, deduction records, prior-year tax returns, estimated tax payment details, business records, and any IRS or state correspondence.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>Do you help with IRS or state notices?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>Yes. The firm assists with IRS and state notices, correspondence, payment issues, and account questions.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>What is an Enrolled Agent?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>An Enrolled Agent, EA, is a federally authorized tax professional who may represent taxpayers before the IRS.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>Do you work with foreign-owned U.S. entities?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>Yes. The firm provides foreign-owned U.S. entity tax support and related compliance-resource guidance.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>Do you provide bookkeeping and payroll services?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>Yes. Bookkeeping and payroll services are available for small businesses and related business needs.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>Can you help with sales tax?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>Yes. The firm assists businesses with sales tax filing guidance and recurring compliance questions.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>Do you help with incorporation?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>The firm can assist with incorporation and business formation support from a tax and filing perspective. Legal advice should be obtained from a qualified attorney.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>What is a Power of Attorney for tax matters?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>A tax Power of Attorney allows an authorized representative to communicate with tax authorities about the specific matters and years listed on the authorization.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>Can I pay taxes through this website?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>No. This website does not collect tax payments. It links to official government payment websites, where payments should be made after verifying the correct tax year, form, and payment category.</p></div></article>
+            <article class="accordion-item reveal"><button class="accordion-trigger" type="button" aria-expanded="false"><span>Should I submit tax documents through the contact form?</span><span aria-hidden="true">+</span></button><div class="accordion-panel"><p>No. Please do not submit Social Security numbers, tax documents, bank information, or sensitive financial information through the contact form.</p></div></article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer-brand"><img src="../assets/images/footer-icon.png" alt="Accounting & Tax Planners of NY Inc" class="footer-logo" /><h2>Accounting &amp; Tax Planners of NY Inc</h2><p>303 5th Avenue, Suite 211<br />New York, NY 10016</p></div>
+        <div><h3>Services</h3><a href="../services/">Tax Preparation</a><a href="../services/">Bookkeeping</a><a href="../services/">Payroll</a><a href="../services/">IRS Notices</a></div>
+        <div><h3>Resources</h3><a href="../resources/">Firm Resources</a><a href="../resources/">Checklists</a><a href="../resources/">Worksheets</a></div>
+        <div><h3>Tax Help</h3><a href="../tax-help/#official-tax-help-finder">Official Tax Action Finder</a><a href="../tax-help/#popular-official-links">Popular Official Links</a><a href="../tax-help/#faq">FAQ</a></div>
+        <div><h3><a href="../contact/">Contact Us</a></h3><p>Phone<br /><a href="tel:+12122923331">212-292-3331</a></p><p>Fax<br />212-292-3334</p><p>Email<br /><a href="mailto:rakesh@taxplanners.pro">rakesh@taxplanners.pro</a></p><p class="footer-hours">Office hours<br /><span>Monday to Friday, 10:00 AM to 6:00 PM</span></p></div>
+      </div>
+      <div class="container footer__legal">
+        <p>Information on this website is provided for general informational purposes only and should not be considered tax, legal, accounting, or financial advice. Please consult a qualified professional regarding your specific situation.</p>
+        <p>Privacy notice: We do not request sensitive tax documents through this website contact form. Please do not submit Social Security numbers, bank information, tax forms, or confidential financial documents through the contact form.</p>
+        <p>No document upload notice: This informational website does not include a client portal or document upload feature.</p>
+        <p><a href="../privacy/">Privacy &amp; Cookie Notice</a></p>
+        <p>&copy; Accounting &amp; Tax Planners of NY Inc</p>
+      </div>
+    </footer>
+    <button class="scroll-top" type="button" aria-label="Scroll to top" data-scroll-top>Top</button>
+    <script src="../data/state-tax-actions.js"></script>
+    <script src="../data/tax-form-intents.js"></script>
+    <script src="../script.js"></script>
+  </body>
+</html>
