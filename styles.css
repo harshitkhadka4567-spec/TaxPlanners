@@ -1778,7 +1778,9 @@ button {
 .accordion {
   display: grid;
   gap: 12px;
+  width: 100%;
   max-width: 920px;
+  margin: 0 auto;
 }
 
 .accordion-item {
@@ -4838,7 +4840,7 @@ body.hero-option-3 .hero--home .btn--text {
 }
 
 .page-intro-about {
-  background-image: url("assets/images/stock-nyc-office-buildings.jpg");
+  background-image: url("assets/images/about-hero-bg.jpg");
 }
 
 .page-intro-contact {
