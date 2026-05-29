@@ -1450,7 +1450,7 @@ if (taxHelpFinder) {
     openTaxHelpResults();
 
     if (!resultSet.primary) {
-      taxHelpEmpty.textContent = "No matching official tax actions found";
+      taxHelpEmpty.textContent = "No matching official tax actions found.";
       taxHelpEmpty.hidden = false;
       return;
     }
