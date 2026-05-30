@@ -589,115 +589,24 @@ const matchesTaxHelpFilter = (resource, activeFilter) => {
   return getResourceCategories(resource).includes(activeFilter);
 };
 
-const createTaxHelpBadge = (text, className) => {
-  const badge = document.createElement("span");
-  badge.className = className;
-  badge.textContent = text;
-  return badge;
-};
-
-const getTaxHelpButtonLabel = (resource) => {
-  if (resource.matchType === "form") return "Open Official Form Page";
-  if (resource.action === "refund") return "Open Refund Status Page";
-  if (resource.action === "payment") return "Open Payment Page";
-  if (["notice", "poa", "payroll", "salesTax", "businessTax", "fbar", "ein"].includes(resource.action)) return "Open Official Guide";
-  if (resource.buttonText) return resource.buttonText;
-  if (resource.buttonLabel) return resource.buttonLabel;
-  if (resource.id === "irs-poa-form-2848") return "Open Form 2848 Page";
-  if (resource.id === "ein") return "Open EIN Application";
-  if (resource.intent === "fbar") return "Open FBAR Guidance";
-  if (resource.category === "Refunds") return "Open Refund Status Page";
-  if (resource.category === "State") return "Open Official Website";
-  if (resource.category === "Payments" || resource.relatedCategories?.includes("Payments")) return "Open Payment Page";
-  return "Open Official Website";
-};
-
-const createTaxHelpCard = (resource, isPrimary = false) => {
-  const card = document.createElement("article");
-  card.className = isPrimary ? "resource-card tax-help-answer-card tax-help-answer-card--primary" : "resource-card tax-help-answer-card";
-
-  if (isPrimary) {
-    card.append(createTaxHelpBadge("BEST OFFICIAL MATCH", "best-match-badge"));
-  }
-
-  const meta = document.createElement("div");
-  meta.className = "resource-card__meta";
-  meta.append(
-    createTaxHelpBadge(resource.source, resource.source === "State Tax Agency" ? "resource-badge resource-badge--state" : "resource-badge"),
-    createTaxHelpBadge(resource.category, "resource-category-label")
-  );
-
-  if (resource.state) {
-    meta.append(createTaxHelpBadge(resource.state, "resource-state-label"));
-  }
-
-  if (resource.formNumber) {
-    meta.append(createTaxHelpBadge(resource.formNumber, "resource-form-label"));
-  }
-
-  if (resource.scope) {
-    meta.append(createTaxHelpBadge(resource.scope, "resource-state-label"));
-  }
-
-  if (resource.actionLabel) {
-    meta.append(createTaxHelpBadge(resource.actionLabel, "resource-action-label"));
-  }
-
-  const title = document.createElement("h2");
-  title.textContent = resource.title;
-
-  const answer = document.createElement("p");
-  answer.className = "resource-summary tax-help-answer-text";
-  answer.textContent = resource.answer;
-
-  const action = document.createElement("a");
-  action.className = resource.state ? "resource-action resource-action--state" : "resource-action";
-  action.href = resource.url;
-  action.target = "_blank";
-  action.rel = "noopener noreferrer";
-  action.textContent = getTaxHelpButtonLabel(resource);
-
-  card.append(meta, title, answer, action);
-
-  if (isPrimary && Array.isArray(resource.related) && resource.related.length) {
-    const relatedList = document.createElement("div");
-    relatedList.className = "tax-help-inline-related";
-    const label = document.createElement("p");
-    label.textContent = "Related links";
-    relatedList.append(label);
-
-    resource.related.slice(0, 4).forEach((link) => {
-      const relatedLink = document.createElement("a");
-      relatedLink.href = link.url;
-      relatedLink.target = "_blank";
-      relatedLink.rel = "noopener noreferrer";
-      relatedLink.textContent = link.title;
-      relatedList.append(relatedLink);
-    });
-
-    card.append(relatedList);
-  }
-  return card;
-};
-
 const taxHelpResultNotes = {
-  refund: "Use this official link to check refund status and review what information may be required.",
-  payment: "Use this official link to make or review a tax payment before submitting.",
-  notice: "Use this official link to review tax notice guidance and next steps.",
-  poa: "Use this official link to review authorization or power of attorney information.",
-  forms: "Use this official link to open the form, instructions, or forms library.",
-  salesTax: "Use this official link for sales tax filing, payment, or guidance.",
-  businessTax: "Use this official link for business tax filing, payment, or guidance.",
-  payroll: "Use this official link to review payroll tax filing, deposits, or deadlines.",
-  fbar: "Use this official link to review FBAR guidance or filing information.",
-  ein: "Use this official link to apply for or review EIN information.",
-  agency: "Use this official link to reach the tax agency resource.",
-  stateAgency: "Use this official link to reach the state tax agency resource."
+  refund: "Use this official page to check refund status and review what information may be required.",
+  payment: "Use this official page to make or review a tax payment.",
+  notice: "Use this official page to review tax notice guidance and next steps.",
+  poa: "Use this official page to review authorization or power of attorney information.",
+  forms: "Use this official page to open the form, instructions, or forms library.",
+  salesTax: "Use this official page for sales tax filing, payment, or guidance.",
+  businessTax: "Use this official page for business tax filing, payment, or guidance.",
+  payroll: "Use this official page to review payroll tax filing, deposits, or deadlines.",
+  fbar: "Use this official page to review FBAR guidance or filing information.",
+  ein: "Use this official page to apply for or review EIN information.",
+  agency: "Use this official page for state tax information and services.",
+  stateAgency: "Use this official page for state tax information and services."
 };
 
 const getTaxHelpResultNote = (resource) => {
   if (resource.isFallback) {
-    return "A direct action page is not available here; use this official state agency link as a fallback.";
+    return "Use this official state agency page as a fallback for this tax action.";
   }
 
   if (resource.matchType === "form" || resource.category === "Forms") {
@@ -708,14 +617,14 @@ const getTaxHelpResultNote = (resource) => {
 };
 
 const createTaxHelpResultItem = (resource) => {
-  const item = document.createElement("article");
+  const item = document.createElement("div");
   item.className = "tax-help-result-item";
 
-  const title = document.createElement("h4");
+  const title = document.createElement("div");
   title.className = "tax-help-result-title";
   title.textContent = resource.title;
 
-  const note = document.createElement("p");
+  const note = document.createElement("div");
   note.className = "tax-help-result-note";
   note.textContent = getTaxHelpResultNote(resource);
 
@@ -724,7 +633,7 @@ const createTaxHelpResultItem = (resource) => {
   action.href = resource.url;
   action.target = "_blank";
   action.rel = "noopener noreferrer";
-  action.textContent = "Open Official Link";
+  action.textContent = "Open Link";
 
   item.append(title, note, action);
   return item;

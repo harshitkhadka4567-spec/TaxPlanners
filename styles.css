@@ -5791,3 +5791,232 @@ body[data-page="contact"] .footer__grid {
     font-size: 0.84rem;
   }
 }
+
+/* Final Tax Help popup hardening: compact, opaque, no card treatment. */
+[data-tax-help-finder] .quick-topic-group,
+[data-tax-help-finder] .filter-group {
+  display: none !important;
+}
+
+[data-tax-help-finder] #tax-help-search,
+[data-tax-help-finder] #tax-help-state {
+  min-height: 54px !important;
+  height: 54px !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+.tax-help-results,
+.search-results,
+.results-panel,
+.tax-help-dropdown {
+  position: absolute !important;
+  top: calc(100% + 8px) !important;
+  right: 0 !important;
+  left: 0 !important;
+  z-index: 200 !important;
+  display: none !important;
+  max-height: 300px !important;
+  margin: 0 !important;
+  padding: 6px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 1px solid #E4DED0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 18px 42px rgba(6, 27, 54, 0.16) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.tax-help-results.is-open,
+.search-results.is-open,
+.results-panel.is-open,
+.tax-help-dropdown.is-open {
+  display: block !important;
+}
+
+.tax-help-results[hidden],
+.search-results[hidden],
+.results-panel[hidden],
+.tax-help-dropdown[hidden] {
+  display: none !important;
+}
+
+[data-tax-help-finder] .tax-help-results,
+[data-tax-help-finder] .tax-help-results > *,
+[data-tax-help-finder] .search-results,
+[data-tax-help-finder] .search-results > *,
+[data-tax-help-finder] .results-panel,
+[data-tax-help-finder] .results-panel > *,
+[data-tax-help-finder] .tax-help-dropdown,
+[data-tax-help-finder] .tax-help-dropdown > * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+[data-tax-help-finder] .tax-help-result-item,
+[data-tax-help-finder] .search-result-item,
+[data-tax-help-finder] .result-card {
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 10px 12px !important;
+  overflow: visible !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  border: 0 !important;
+  border-bottom: 1px solid #EFE7D8 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+[data-tax-help-finder] .tax-help-result-item:last-child,
+[data-tax-help-finder] .search-result-item:last-child,
+[data-tax-help-finder] .result-card:last-child {
+  border-bottom: 0 !important;
+}
+
+[data-tax-help-finder] .tax-help-result-title,
+[data-tax-help-finder] .search-result-title,
+[data-tax-help-finder] .result-card h3,
+[data-tax-help-finder] .tax-help-results .resource-card h2 {
+  margin: 0 0 4px !important;
+  color: #061B36 !important;
+  font-family: inherit !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0 !important;
+}
+
+[data-tax-help-finder] .tax-help-result-note,
+[data-tax-help-finder] .search-result-note,
+[data-tax-help-finder] .result-card p {
+  margin: 0 0 8px !important;
+  color: #64748B !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+
+[data-tax-help-finder] .tax-help-result-link,
+[data-tax-help-finder] .search-result-link,
+[data-tax-help-finder] .result-card a,
+[data-tax-help-finder] .result-card .btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  max-width: max-content !important;
+  min-height: 30px !important;
+  margin: 0 !important;
+  padding: 6px 10px !important;
+  color: #ffffff !important;
+  background: #061B36 !important;
+  background-color: #061B36 !important;
+  border: 1px solid #061B36 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+}
+
+[data-tax-help-finder] .tax-help-results h3,
+[data-tax-help-finder] .tax-help-results .resource-card__meta,
+[data-tax-help-finder] .tax-help-results .resource-badge,
+[data-tax-help-finder] .tax-help-results .resource-category-label,
+[data-tax-help-finder] .tax-help-results .resource-state-label,
+[data-tax-help-finder] .tax-help-results .resource-form-label,
+[data-tax-help-finder] .tax-help-results .resource-action-label,
+[data-tax-help-finder] .tax-help-results .best-match-badge,
+[data-tax-help-finder] .tax-help-results .tax-help-inline-related {
+  display: none !important;
+}
+
+[data-tax-help-finder] .tax-help-results .resource-card,
+[data-tax-help-finder] .tax-help-results .tax-help-answer-card {
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 10px 12px !important;
+  background: #ffffff !important;
+  border: 0 !important;
+  border-bottom: 1px solid #EFE7D8 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+[data-tax-help-finder] .tax-help-results .tax-help-answer-text,
+[data-tax-help-finder] .tax-help-results .resource-summary {
+  margin: 0 0 8px !important;
+  padding: 0 !important;
+  color: #64748B !important;
+  background: #ffffff !important;
+  border: 0 !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+}
+
+[data-tax-help-finder] .tax-help-results .resource-action {
+  width: auto !important;
+  max-width: max-content !important;
+  min-height: 30px !important;
+  margin: 0 !important;
+  padding: 6px 10px !important;
+  font-size: 13px !important;
+  box-shadow: none !important;
+}
+
+[data-tax-help-finder] .tax-help-results .resource-empty {
+  margin: 0 !important;
+  padding: 10px 12px !important;
+  color: #64748B !important;
+  background: #ffffff !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  font-size: 13px !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+}
+
+@media (max-width: 760px) {
+  [data-tax-help-finder] #tax-help-search,
+  [data-tax-help-finder] #tax-help-state {
+    min-height: 54px !important;
+    height: 54px !important;
+  }
+
+  [data-tax-help-finder] .tax-help-results,
+  [data-tax-help-finder] .search-results,
+  [data-tax-help-finder] .results-panel,
+  [data-tax-help-finder] .tax-help-dropdown {
+    max-height: 260px !important;
+  }
+
+  [data-tax-help-finder] .tax-help-result-title,
+  [data-tax-help-finder] .search-result-title,
+  [data-tax-help-finder] .result-card h3 {
+    font-size: 14px !important;
+  }
+
+  [data-tax-help-finder] .tax-help-result-note,
+  [data-tax-help-finder] .search-result-note,
+  [data-tax-help-finder] .result-card p,
+  [data-tax-help-finder] .tax-help-results .resource-empty {
+    font-size: 12.5px !important;
+  }
+}
