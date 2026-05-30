@@ -406,7 +406,12 @@ const applySearchCorrections = (value) => {
     [/\bnewyork\b/g, "new york"],
     [/\bnys\b/g, "new york state"],
     [/\bwheres\b/g, "where is"],
+    [/\b1040x\b/g, "1040 x"],
+    [/\b1120s\b/g, "1120 s"],
     [/\bw2\b/g, "w 2"],
+    [/\bw3\b/g, "w 3"],
+    [/\bw4\b/g, "w 4"],
+    [/\bw9\b/g, "w 9"],
     [/\befile\b/g, "e file"]
   ];
 
@@ -455,8 +460,9 @@ const taxHelpIntents = {
   fbar: ["fbar", "foreign bank", "foreign account", "fincen", "form 114", "overseas account", "international account"],
   sales: ["sales tax", "resale", "seller permit", "sales tax filing", "sales tax web file", "collect sales tax"],
   ein: ["ein", "tax id", "business id", "employer identification", "get ein", "apply ein"],
+  account: ["account", "online account", "tax account", "irs account", "transcript", "get transcript", "ip pin", "withholding estimator"],
   business: ["business tax", "s corp", "s corporation", "partnership", "corporation", "llc", "company tax", "business filing"],
-  forms: ["forms", "tax form", "instructions", "publication", "schedule", "irs form"]
+  forms: ["forms", "tax form", "instructions", "publication", "schedule", "irs form", "extension", "amended return"]
 };
 
 const intentCategoryMap = {
@@ -468,6 +474,7 @@ const intentCategoryMap = {
   fbar: "FBAR / Foreign Accounts",
   sales: "Sales Tax",
   ein: "Business Tax",
+  account: "IRS Account / Transcript",
   business: "Business Tax",
   forms: "Forms"
 };
@@ -600,6 +607,7 @@ const taxHelpResultNotes = {
   payroll: "Use this official page to review payroll tax filing, deposits, or deadlines.",
   fbar: "Use this official page to review FBAR guidance or filing information.",
   ein: "Use this official page to apply for or review EIN information.",
+  account: "Use this official page to access tax account, transcript, identity, or withholding services.",
   agency: "Use this official page for state tax information and services.",
   stateAgency: "Use this official page for state tax information and services."
 };
@@ -613,7 +621,19 @@ const getTaxHelpResultNote = (resource) => {
     return taxHelpResultNotes.forms;
   }
 
-  return taxHelpResultNotes[resource.action] || "Use this official link to review the tax action and next steps.";
+  const categoryActionMap = {
+    Refunds: "refund",
+    Payments: "payment",
+    Payroll: "payroll",
+    "Sales Tax": "salesTax",
+    "Business Tax": "businessTax",
+    "Notices / POA": "notice",
+    "FBAR / Foreign Accounts": "fbar",
+    State: "agency"
+  };
+
+  const action = resource.action || resource.intent || categoryActionMap[resource.category];
+  return taxHelpResultNotes[action] || "Use this official link to review the tax action and next steps.";
 };
 
 const createTaxHelpResultItem = (resource) => {
@@ -695,6 +715,7 @@ const stateActionCategoryMap = {
   payroll: "Payroll",
   fbar: "FBAR / Foreign Accounts",
   ein: "Business Tax",
+  account: "IRS Account / Transcript",
   poa: "Notices / POA",
   stateAgency: "State",
   agency: "State"
@@ -723,6 +744,7 @@ const stateActionLabelMap = {
   payroll: "Payroll",
   fbar: "FBAR",
   ein: "EIN",
+  account: "Account",
   poa: "POA",
   stateAgency: "Agency",
   agency: "Agency"
@@ -732,15 +754,16 @@ const stateActionKeys = ["refund", "payment", "forms", "salesTax", "businessTax"
 
 const taxActionAliases = {
   refund: ["refund", "refunf", "return money", "check refund", "where refund", "where is my refund", "refund status"],
-  payment: ["pay", "payment", "paymnt", "make payment", "tax bill", "balance due", "estimated tax", "pay tax", "pay taxes"],
-  notice: ["notice", "notic", "letter", "tax letter", "irs letter", "state notice", "cp2000"],
+  payment: ["pay", "payment", "paymnt", "make payment", "tax bill", "balance due", "estimated tax", "pay tax", "pay taxes", "irs payment", "pay federal tax", "business tax payment"],
+  notice: ["notice", "notic", "letter", "tax letter", "irs letter", "state notice", "cp2000", "notice reply", "respond to notice"],
   poa: ["poa", "power of attorney", "power attorney", "form 2848", "authorize accountant", "representative"],
-  forms: ["forms", "form", "instructions", "publication", "schedule"],
+  forms: ["forms", "form", "instructions", "publication", "schedule", "extension", "amended return"],
   salesTax: ["sales tax", "seller permit", "resale", "collect sales tax", "sales tax filing", "web file"],
   businessTax: ["business tax", "company tax", "llc tax", "corporation", "partnership", "s corp", "business filing"],
   payroll: ["payroll", "payrol", "employment tax", "withholding", "941", "944", "w 2", "w-2", "employer tax", "payroll deadline", "payroll due date"],
   fbar: ["fbar", "foreign bank", "foreign account", "fincen", "overseas account", "form 114"],
   ein: ["ein", "tax id", "employer identification number", "get ein", "apply ein"],
+  account: ["account", "online account", "tax account", "irs account", "transcript", "get transcript", "tax record", "ip pin", "identity protection pin", "withholding estimator"],
   stateAgency: ["tax agency", "tax department", "department of revenue", "division of taxation", "tax office"]
 };
 
@@ -754,11 +777,14 @@ const taxFormSearchTerms = [
   "schedule",
   "pdf",
   "1040",
+  "1040 x",
   "1040 sr",
   "1040 nr",
+  "1041",
   "1120",
   "1120 s",
   "1065",
+  "990",
   "941",
   "944",
   "w 2",
@@ -779,7 +805,7 @@ const taxFormSearchTerms = [
   "business form"
 ];
 
-const taxActionPriority = ["salesTax", "businessTax", "payroll", "refund", "payment", "notice", "poa", "fbar", "ein", "forms", "stateAgency"];
+const taxActionPriority = ["salesTax", "businessTax", "payroll", "refund", "payment", "notice", "poa", "fbar", "ein", "account", "forms", "stateAgency"];
 
 const categoryFilterToActionKeys = {
   Refunds: ["refund"],
@@ -843,16 +869,25 @@ const detectActionState = (query, selectedState) => {
 
 const getFederalActionScore = (resource, query, actionKey) => {
   if (resource.action !== actionKey) return -1;
-  const text = applySearchCorrections([resource.title, resource.answer, resource.source, ...(resource.keywords || [])].join(" "));
+  const text = applySearchCorrections([resource.title, resource.answer, resource.source, resource.category, resource.state, resource.formNumber, ...(resource.keywords || [])].join(" "));
   let score = 60;
   if (text.includes(query)) score += 75;
+  const compactQuery = normalizeFormKey(query);
+  const compactText = normalizeFormKey(text);
+  if (compactQuery && compactText.includes(compactQuery)) score += 42;
   getQueryTokens(query).forEach((token) => {
     if (text.split(" ").some((candidate) => isFuzzyMatch(token, candidate))) score += 8;
   });
   if (query.includes("pay irs") && resource.id === "irs-direct-pay") score += 60;
+  if (actionKey === "payment" && matchesAnyPhrase(query, ["payment", "irs payment", "pay federal tax"]) && resource.id === "irs-payments") score += 110;
+  if (actionKey === "payment" && matchesAnyPhrase(query, ["direct pay", "pay irs"]) && resource.id === "irs-direct-pay") score += 90;
+  if (actionKey === "notice" && matchesAnyPhrase(query, ["notice", "irs notice", "irs letter", "notice reply", "respond to notice"]) && resource.id === "irs-notice") score += 120;
+  if (actionKey === "notice" && query.includes("cp2000") && resource.id === "irs-cp2000") score += 120;
   if (query.includes("payroll deadline") && resource.id === "irs-payroll-due-dates") score += 80;
   if (query.includes("due date") && resource.id === "irs-payroll-due-dates") score += 50;
   if (actionKey === "fbar" && resource.id === "irs-fbar") score += 20;
+  if (actionKey === "account" && resource.id === "irs-get-transcript" && query.includes("transcript")) score += 80;
+  if (actionKey === "account" && resource.id === "irs-online-account" && query.includes("account")) score += 70;
   return score;
 };
 
@@ -861,12 +896,16 @@ const createFederalActionResource = (item) => ({
   title: item.title,
   answer: item.answer,
   source: item.source,
-  state: "",
-  category: stateActionCategoryMap[item.action] || "Federal",
+  state: item.state || "",
+  category: item.category || stateActionCategoryMap[item.action] || "Federal",
   action: item.action,
   actionLabel: stateActionLabelMap[item.action] || "Federal",
   url: item.url,
-  buttonText: item.buttonText
+  buttonText: item.buttonText,
+  keywords: item.keywords || [],
+  relatedCategories: item.relatedCategories || [],
+  formNumber: item.formNumber,
+  matchType: item.matchType
 });
 
 const createStateActionResource = (stateEntry, actionKey, options = {}) => {
@@ -1096,11 +1135,14 @@ const matchesAnyPhrase = (query, phrases) =>
 
 const compactFormNumbers = [
   "1040",
+  "1040x",
   "1040sr",
   "1040nr",
+  "1041",
   "1120",
   "1120s",
   "1065",
+  "990",
   "941",
   "944",
   "w2",
@@ -1127,12 +1169,21 @@ const compactFormNumbers = [
 ];
 
 const refundIntentPhrases = ["refund", "refunf", "where is my refund", "check refund", "refund status", "where refund"];
-const paymentIntentPhrases = ["pay", "payment", "paymnt", "tax bill", "balance due", "direct pay", "eftps", "estimated tax", "pay tax", "pay taxes"];
+const paymentIntentPhrases = ["pay", "payment", "paymnt", "tax bill", "balance due", "direct pay", "eftps", "estimated tax", "pay tax", "pay taxes", "irs payment", "pay federal tax", "make payment", "business tax payment"];
 const infoIntentPhrases = [
   "info",
   "information",
   "guide",
   "help",
+  "account",
+  "online account",
+  "tax account",
+  "transcript",
+  "get transcript",
+  "ip pin",
+  "identity protection pin",
+  "withholding estimator",
+  "identity verification",
   "deadline",
   "notice",
   "letter",
@@ -1154,6 +1205,7 @@ const clearFormIntentPhrases = [
   "instructions",
   "election",
   "extension",
+  "amended return",
   "authorization",
   "power of attorney",
   "authorize accountant",
@@ -1202,6 +1254,7 @@ const detectSimpleTaxIntent = (query, activeFilter = "all") => {
 };
 
 const detectInfoActionKey = (query, activeFilter = "all") => {
+  if (matchesAnyPhrase(query, ["account", "online account", "tax account", "irs account", "transcript", "get transcript", "tax record", "ip pin", "identity protection pin", "withholding estimator", "identity verification"])) return "account";
   if (activeFilter === "Notices / POA" || matchesAnyPhrase(query, ["notice", "notic", "letter", "irs letter", "state notice", "cp2000"])) return "notice";
   if (activeFilter === "Payroll" || matchesAnyPhrase(query, ["payroll", "payrol", "employment tax", "withholding", "941 due date", "payroll deadline", "payroll due date"])) return "payroll";
   if (activeFilter === "Sales Tax" || query.includes("sales tax")) return "salesTax";
@@ -1210,6 +1263,120 @@ const detectInfoActionKey = (query, activeFilter = "all") => {
   if (matchesAnyPhrase(query, ["poa", "what is poa"])) return "poa";
   if (matchesAnyPhrase(query, ["ein", "tax id", "employer identification"])) return "ein";
   return "businessTax";
+};
+
+const taxHelpSearchResourceKeys = ["refund", "payment", "forms", "salesTax", "businessTax", "payroll", "notice", "agency"];
+
+const normalizeTaxHelpResource = (resource) => ({
+  id: resource.id,
+  title: resource.title,
+  answer: resource.answer,
+  source: resource.source,
+  state: resource.state || "",
+  category: resource.category || stateActionCategoryMap[resource.action] || "Federal",
+  action: resource.action || resource.intent || "",
+  actionLabel: resource.actionLabel || stateActionLabelMap[resource.action] || resource.category || "",
+  url: resource.url,
+  buttonText: resource.buttonText || resource.buttonLabel,
+  keywords: resource.keywords || [],
+  relatedCategories: resource.relatedCategories || [],
+  formNumber: resource.formNumber,
+  matchType: resource.matchType
+});
+
+const getStateActionSearchResources = () =>
+  (Array.isArray(window.stateTaxActions) ? window.stateTaxActions : []).flatMap((stateEntry) =>
+    taxHelpSearchResourceKeys
+      .map((actionKey) => createStateActionResource(stateEntry, actionKey, { silent: true }))
+      .filter((resource) => resource.url && (!resource.isFallback || resource.isAgency))
+  );
+
+const getAllTaxHelpSearchResources = () => {
+  const federalActions = (Array.isArray(window.federalTaxActions) ? window.federalTaxActions : []).map(createFederalActionResource);
+  const legacyResources = (Array.isArray(window.taxHelpResources) ? window.taxHelpResources : []).map(normalizeTaxHelpResource);
+  const stateResources = getStateActionSearchResources();
+  const map = new Map();
+
+  [...federalActions, ...legacyResources, ...stateResources].filter((resource) => resource?.url && resource.title).forEach((resource) => {
+    const key = resource.id || `${resource.title}|${resource.url}`;
+    map.set(key, { ...(map.get(key) || {}), ...resource });
+  });
+
+  return Array.from(map.values());
+};
+
+const getTaxHelpSearchText = (resource) =>
+  applySearchCorrections(
+    [
+      resource.title,
+      resource.answer,
+      resource.source,
+      resource.state,
+      resource.category,
+      resource.action,
+      resource.actionLabel,
+      resource.formNumber,
+      resource.url,
+      ...(resource.keywords || []),
+      ...(resource.relatedCategories || [])
+    ].join(" ")
+  );
+
+const scoreGenericTaxHelpResource = (resource, query, selectedState, activeFilter, actionKey) => {
+  if (!matchesActionFilter(resource, activeFilter)) return -1;
+
+  const text = getTaxHelpSearchText(resource);
+  const title = applySearchCorrections(resource.title);
+  const source = applySearchCorrections(resource.source);
+  const compactQuery = normalizeFormKey(query);
+  const compactText = normalizeFormKey(text);
+  const tokens = getQueryTokens(query);
+  let score = 0;
+
+  if (text.includes(query)) score += 110;
+  if (title.includes(query)) score += 90;
+  if (source.includes(query)) score += 45;
+  if (compactQuery && compactText.includes(compactQuery)) score += 72;
+
+  tokens.forEach((token) => {
+    if (` ${text} `.includes(` ${token} `)) {
+      score += 18;
+    } else if (text.split(" ").some((candidate) => isFuzzyMatch(token, candidate))) {
+      score += 8;
+    }
+  });
+
+  if (actionKey && resource.action === actionKey) score += 55;
+  if (actionKey && getResourceCategories(resource).includes(stateActionCategoryMap[actionKey])) score += 38;
+  if (selectedState !== "all" && resource.state === selectedState) score += 75;
+  if (selectedState !== "all" && resource.state && resource.state !== selectedState) score -= 65;
+  if (resource.state && query.includes(applySearchCorrections(resource.state))) score += 70;
+  if (query.includes("irs") && source.includes("irs")) score += 65;
+  if (query.includes("eftps") && resource.id === "eftps") score += 95;
+  if (query.includes("transcript") && resource.id === "irs-get-transcript") score += 100;
+  if (query.includes("account") && ["irs-online-account", "irs-business-tax-account"].includes(resource.id)) score += 75;
+  if (query.includes("w 9") && resource.id === "irs-form-w-9") score += 100;
+  if (query.includes("2848") && resource.id === "irs-form-2848") score += 100;
+  if (query.includes("poa") && resource.id === "irs-form-2848") score += 90;
+  if (query.includes("ein") && resource.id === "irs-ein") score += 100;
+
+  return score;
+};
+
+const resolveGenericTaxActionResults = (query, selectedState = "all", activeFilter = "all", actionKey = "") => {
+  if (!query) return null;
+
+  const scoredResources = getAllTaxHelpSearchResources()
+    .map((resource) => ({ resource, score: scoreGenericTaxHelpResource(resource, query, selectedState, activeFilter, actionKey) }))
+    .filter((item) => item.score >= Math.max(24, getQueryTokens(query).length * 12))
+    .sort((a, b) => b.score - a.score || a.resource.title.localeCompare(b.resource.title))
+    .map((item) => item.resource);
+
+  if (!scoredResources.length) return null;
+  return {
+    primary: scoredResources[0],
+    related: scoredResources.slice(1, 8)
+  };
 };
 
 const getDefaultFederalFormResource = () => {
@@ -1235,6 +1402,10 @@ const resolveTaxActionResults = (rawInput, selectedState = "all", activeFilter =
     if (formResultSet?.primary) return { ...formResultSet, query, stateEntry, actionKey: "forms" };
     primary = getDefaultFederalFormResource();
     related = [];
+  } else if (stateEntry && ["payroll", "account"].includes(actionKey)) {
+    const genericResultSet = resolveGenericTaxActionResults(query, selectedState, activeFilter, actionKey);
+    primary = genericResultSet?.primary || null;
+    related = genericResultSet?.related || [];
   } else if (stateEntry && stateActionKeys.includes(actionKey)) {
     primary = createStateActionResource(stateEntry, actionKey, options);
     related = [...getRelatedStateActions(stateEntry, actionKey), ...getFederalActionResources(query, actionKey).slice(0, 2)];
@@ -1256,6 +1427,12 @@ const resolveTaxActionResults = (rawInput, selectedState = "all", activeFilter =
     related = federalDefaults.slice(1);
   }
 
+  if (!primary && query) {
+    const genericResultSet = resolveGenericTaxActionResults(query, selectedState, activeFilter, actionKey);
+    primary = genericResultSet?.primary || null;
+    related = genericResultSet?.related || [];
+  }
+
   if (primary && !matchesActionFilter(primary, activeFilter)) {
     const filteredRelated = related.filter((resource) => matchesActionFilter(resource, activeFilter));
     primary = filteredRelated[0] || null;
@@ -1270,8 +1447,8 @@ const resolveTaxActionResults = (rawInput, selectedState = "all", activeFilter =
 const taxHelpFinderTests = [
   ["nj refund", "Check New Jersey Refund Status"],
   ["check my refund nys", "Check New York State Refund Status"],
-  ["where is my refund", "Check Federal IRS Refund Status"],
-  ["irs refund", "Check Federal IRS Refund Status"],
+  ["where is my refund", "IRS Where's My Refund"],
+  ["irs refund", "IRS Where's My Refund"],
   ["ca refund", "Check California Refund Status"],
   ["ny refund", "Check New York State Refund Status"],
   ["nys refund", "Check New York State Refund Status"],
@@ -1307,7 +1484,18 @@ const taxHelpFinderTests = [
   ["ny it 201", "New York Form IT-201"],
   ["nj 1040", "New Jersey Form NJ-1040"],
   ["ca 540", "California Form 540"],
-  ["nj forms", "New Jersey Tax Forms"]
+  ["nj forms", "New Jersey Tax Forms"],
+  ["irs", "Check Federal IRS Refund Status"],
+  ["payment", "IRS Make a Payment"],
+  ["notice", "IRS Notices and Letters"],
+  ["w9", "IRS Form W-9, Request for Taxpayer Identification Number"],
+  ["w-9", "IRS Form W-9, Request for Taxpayer Identification Number"],
+  ["2848", "IRS Form 2848, Power of Attorney and Declaration of Representative"],
+  ["ein", "Apply for an EIN"],
+  ["transcript", "IRS Get Transcript"],
+  ["ny refund", "Check New York State Refund Status"],
+  ["nj payment", "Pay New Jersey Taxes"],
+  ["sales tax", "California Sales Tax"]
 ];
 
 window.runTaxHelpFinderTests = () => {
@@ -1414,7 +1602,7 @@ if (taxHelpFinder) {
     openTaxHelpResults();
 
     if (!resultSet.primary) {
-      taxHelpEmpty.textContent = "No matching official tax actions found.";
+      taxHelpEmpty.textContent = "No matching official tax actions found. Try searching \"IRS payment,\" \"refund,\" \"notice,\" \"W-9,\" or \"EIN.\"";
       taxHelpEmpty.hidden = false;
       return;
     }

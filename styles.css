@@ -5798,6 +5798,19 @@ body[data-page="contact"] .footer__grid {
   display: none !important;
 }
 
+[data-tax-help-finder] .tax-help-disclaimer {
+  position: relative;
+  z-index: 1;
+  margin-top: 8px !important;
+  padding: 9px 11px !important;
+  color: #64748B !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid #E4DED0 !important;
+  box-shadow: none !important;
+  font-size: 12.5px !important;
+  line-height: 1.45 !important;
+}
+
 [data-tax-help-finder] #tax-help-search,
 [data-tax-help-finder] #tax-help-state {
   min-height: 54px !important;
