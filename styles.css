@@ -6033,3 +6033,74 @@ body[data-page="contact"] .footer__grid {
     font-size: 12.5px !important;
   }
 }
+
+/* Tax Help intro/search layout: keep the finder immediately usable. */
+#official-tax-help-finder {
+  padding-top: clamp(28px, 4vw, 42px) !important;
+  padding-bottom: clamp(34px, 4vw, 48px) !important;
+}
+
+#official-tax-help-finder .container {
+  position: relative;
+}
+
+#official-tax-help-finder .section-heading {
+  max-width: 860px;
+  margin-bottom: clamp(24px, 3vw, 32px) !important;
+}
+
+#official-tax-help-finder .section-heading .eyebrow {
+  margin-bottom: 8px;
+}
+
+#official-tax-help-finder .section-heading h1 {
+  margin: 0;
+  color: #061B36;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-size: clamp(2.35rem, 4.4vw, 3.7rem);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: 0;
+}
+
+#official-tax-help-finder .section-heading p:not(.eyebrow) {
+  max-width: 760px;
+  margin: 12px 0 0;
+  color: #64748B;
+  font-size: 1.04rem;
+  line-height: 1.55;
+}
+
+[data-tax-help-finder] .resource-tools {
+  margin-bottom: 20px !important;
+}
+
+[data-tax-help-finder] .tax-help-disclaimer {
+  max-width: 980px;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 760px) {
+  #official-tax-help-finder {
+    padding-top: 26px !important;
+    padding-bottom: 34px !important;
+  }
+
+  #official-tax-help-finder .section-heading {
+    margin-bottom: 24px !important;
+  }
+
+  #official-tax-help-finder .section-heading h1 {
+    font-size: 2.2rem;
+    line-height: 1.06;
+  }
+
+  #official-tax-help-finder .section-heading p:not(.eyebrow) {
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  [data-tax-help-finder] .resource-tools {
+    margin-bottom: 18px !important;
+  }
+}
