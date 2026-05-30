@@ -680,6 +680,56 @@ const createTaxHelpCard = (resource, isPrimary = false) => {
   return card;
 };
 
+const taxHelpResultNotes = {
+  refund: "Use this official link to check refund status and review what information may be required.",
+  payment: "Use this official link to make or review a tax payment before submitting.",
+  notice: "Use this official link to review tax notice guidance and next steps.",
+  poa: "Use this official link to review authorization or power of attorney information.",
+  forms: "Use this official link to open the form, instructions, or forms library.",
+  salesTax: "Use this official link for sales tax filing, payment, or guidance.",
+  businessTax: "Use this official link for business tax filing, payment, or guidance.",
+  payroll: "Use this official link to review payroll tax filing, deposits, or deadlines.",
+  fbar: "Use this official link to review FBAR guidance or filing information.",
+  ein: "Use this official link to apply for or review EIN information.",
+  agency: "Use this official link to reach the tax agency resource.",
+  stateAgency: "Use this official link to reach the state tax agency resource."
+};
+
+const getTaxHelpResultNote = (resource) => {
+  if (resource.isFallback) {
+    return "A direct action page is not available here; use this official state agency link as a fallback.";
+  }
+
+  if (resource.matchType === "form" || resource.category === "Forms") {
+    return taxHelpResultNotes.forms;
+  }
+
+  return taxHelpResultNotes[resource.action] || "Use this official link to review the tax action and next steps.";
+};
+
+const createTaxHelpResultItem = (resource) => {
+  const item = document.createElement("article");
+  item.className = "tax-help-result-item";
+
+  const title = document.createElement("h4");
+  title.className = "tax-help-result-title";
+  title.textContent = resource.title;
+
+  const note = document.createElement("p");
+  note.className = "tax-help-result-note";
+  note.textContent = getTaxHelpResultNote(resource);
+
+  const action = document.createElement("a");
+  action.className = "tax-help-result-link";
+  action.href = resource.url;
+  action.target = "_blank";
+  action.rel = "noopener noreferrer";
+  action.textContent = "Open Official Link";
+
+  item.append(title, note, action);
+  return item;
+};
+
 const scoreTaxHelpResource = (resource, context) => {
   if (!matchesTaxHelpFilter(resource, context.activeFilter)) return -1;
 
@@ -1417,7 +1467,11 @@ if (taxHelpFinder) {
   };
 
   const closeTaxHelpResults = () => {
-    if (taxHelpResults) taxHelpResults.hidden = true;
+    if (taxHelpResults) {
+      taxHelpResults.hidden = true;
+      taxHelpResults.classList.remove("is-open", "visible");
+    }
+    if (taxHelpSearch) taxHelpSearch.setAttribute("aria-expanded", "false");
     taxHelpFinder.classList.remove("tax-help-popup-open");
   };
 
@@ -1425,8 +1479,9 @@ if (taxHelpFinder) {
     if (taxHelpResults) {
       positionTaxHelpResults();
       taxHelpResults.hidden = false;
-      taxHelpResults.classList.add("visible");
+      taxHelpResults.classList.add("is-open", "visible");
     }
+    if (taxHelpSearch) taxHelpSearch.setAttribute("aria-expanded", "true");
     taxHelpFinder.classList.add("tax-help-popup-open");
   };
 
@@ -1455,10 +1510,11 @@ if (taxHelpFinder) {
       return;
     }
 
-    taxHelpHeading.textContent = "Best official action match";
-    taxHelpPrimary.append(createTaxHelpCard(resultSet.primary, true));
-    taxHelpRelatedHeading.textContent = resultSet.related.length ? "Related official links" : "";
-    taxHelpRelated.replaceChildren(...resultSet.related.map((resource) => createTaxHelpCard(resource)));
+    const compactResults = [resultSet.primary, ...resultSet.related].filter(
+      (resource, index, list) => resource && list.findIndex((item) => item.id === resource.id) === index
+    );
+
+    taxHelpPrimary.replaceChildren(...compactResults.map((resource) => createTaxHelpResultItem(resource)));
   };
 
   const setTaxHelpFilter = (nextFilter) => {

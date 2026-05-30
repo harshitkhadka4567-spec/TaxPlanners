@@ -4847,6 +4847,10 @@ body.hero-option-3 .hero--home .btn--text {
   background-image: url("assets/images/stock-contact-phone.jpg");
 }
 
+.page-intro-payments {
+  background-image: url("assets/images/stock-resources-documents.jpg");
+}
+
 @media (max-width: 760px) {
   .page-intro {
     min-height: 320px;
@@ -5498,5 +5502,292 @@ body[data-page="contact"] .footer__grid {
   .contact-page .footer__grid,
   body[data-page="contact"] .footer__grid {
     grid-template-columns: 1fr;
+  }
+}
+
+.payment-notice {
+  max-width: 980px;
+  margin: 0 auto 28px;
+  padding: 20px 22px;
+  color: var(--navy);
+  background: rgba(200, 169, 107, 0.1);
+  border: 1px solid rgba(200, 169, 107, 0.28);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.payment-notice h2 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 1.1rem;
+}
+
+.payment-notice p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.payment-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.payment-card {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.payment-card h2 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-size: 1.25rem;
+}
+
+.payment-card p {
+  margin: 0 0 16px;
+  color: var(--muted);
+}
+
+.payment-card address {
+  margin: 0 0 16px;
+  color: var(--navy);
+  font-style: normal;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.payment-card .btn {
+  margin-top: auto;
+}
+
+.payment-card--notice {
+  background: #fbf8ef;
+  border-color: rgba(200, 169, 107, 0.34);
+}
+
+@media (max-width: 760px) {
+  .payment-notice {
+    padding: 18px;
+  }
+
+  .payment-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .payment-card {
+    min-height: auto;
+    padding: 20px;
+  }
+}
+
+/* Targeted Tax Help search popup fix. */
+#official-tax-help-finder {
+  position: relative;
+  z-index: 10;
+  padding-top: clamp(38px, 5vw, 56px);
+  padding-bottom: clamp(34px, 4vw, 44px);
+}
+
+#popular-official-links {
+  position: relative;
+  z-index: 1;
+}
+
+#official-tax-help-finder .section-heading {
+  margin-bottom: 20px;
+}
+
+#official-tax-help-finder .section-heading p {
+  margin-bottom: 8px;
+}
+
+[data-tax-help-finder] .resource-tools,
+[data-tax-help-finder] .tax-help-search-field {
+  position: relative;
+  z-index: 20;
+  overflow: visible;
+  background: #ffffff;
+}
+
+[data-tax-help-finder] .resource-tools {
+  display: block;
+  margin-bottom: 10px;
+  padding: 14px;
+  border: 1px solid #E4DED0;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(6, 27, 54, 0.10);
+}
+
+[data-tax-help-finder] .resource-tool-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 0.32fr);
+  gap: 12px;
+  align-items: end;
+}
+
+[data-tax-help-finder] #tax-help-search,
+[data-tax-help-finder] #tax-help-state {
+  min-height: 54px;
+  height: 54px;
+  color: #061B36;
+  background-color: #ffffff;
+  border: 1px solid #E4DED0;
+  box-shadow: 0 12px 32px rgba(6, 27, 54, 0.10);
+}
+
+[data-tax-help-finder] #tax-help-search {
+  background: #ffffff;
+}
+
+[data-tax-help-finder] .tax-help-results {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+  width: auto;
+  max-height: 320px;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: #ffffff;
+  border: 1px solid #E4DED0;
+  border-radius: 14px;
+  box-shadow: 0 24px 60px rgba(6, 27, 54, 0.18);
+}
+
+[data-tax-help-finder] .tax-help-results.is-open {
+  display: block;
+}
+
+[data-tax-help-finder] .tax-help-results[hidden] {
+  display: none !important;
+}
+
+[data-tax-help-finder] .tax-help-results h3 {
+  display: none;
+}
+
+[data-tax-help-finder] .resource-grid--finder {
+  display: block;
+}
+
+[data-tax-help-finder] .tax-help-result-item {
+  padding: 12px 14px;
+  background: #ffffff;
+  border-bottom: 1px solid #E4DED0;
+}
+
+[data-tax-help-finder] .tax-help-result-item:last-child {
+  border-bottom: 0;
+}
+
+[data-tax-help-finder] .tax-help-result-title {
+  margin: 0 0 4px;
+  color: #061B36;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+[data-tax-help-finder] .tax-help-result-note {
+  margin: 0 0 8px;
+  color: #64748B;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+[data-tax-help-finder] .tax-help-result-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  color: #ffffff;
+  background: #061B36;
+  border: 1px solid #061B36;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+}
+
+[data-tax-help-finder] .tax-help-result-link:hover {
+  background: #5D918B;
+  border-color: #5D918B;
+}
+
+[data-tax-help-finder] .tax-help-results .resource-empty {
+  margin: 0;
+  padding: 12px 14px;
+  color: #64748B;
+  background: #ffffff;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+[data-tax-help-finder] .tax-help-disclaimer {
+  margin-top: 8px;
+}
+
+@media (max-width: 760px) {
+  #official-tax-help-finder {
+    padding-top: 40px;
+    padding-bottom: 34px;
+  }
+
+  #official-tax-help-finder .section-heading {
+    margin-bottom: 18px;
+  }
+
+  [data-tax-help-finder] .resource-tools {
+    display: block;
+    padding: 12px;
+  }
+
+  [data-tax-help-finder] .resource-tool-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  [data-tax-help-finder] #tax-help-search,
+  [data-tax-help-finder] #tax-help-state {
+    min-height: 52px;
+    height: 52px;
+  }
+
+  [data-tax-help-finder] .tax-help-results {
+    right: 0;
+    left: 0;
+    max-width: 100%;
+    max-height: 280px;
+  }
+
+  [data-tax-help-finder] .tax-help-result-item {
+    padding: 11px 12px;
+  }
+
+  [data-tax-help-finder] .tax-help-result-link {
+    min-height: 32px;
+    padding: 6px 10px;
+    font-size: 0.84rem;
   }
 }
