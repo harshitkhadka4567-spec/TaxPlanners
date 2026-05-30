@@ -49,89 +49,93 @@
     </header>
 
     <main id="main">
-      <section class="section section--gray" id="official-tax-help-finder" data-tax-help-finder>
-        <div class="container">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Official Tax Action Finder</p>
-            <h1>Official Tax Action Finder</h1>
-            <p>Search official federal and state tax links for payments, refunds, notices, forms, payroll, sales tax, EIN, and more.</p>
-          </div>
+      <section class="page-hero page-intro page-intro-tax-help tax-help-hero-search" id="official-tax-help-finder" data-tax-help-finder>
+        <div class="container page-hero__grid">
+          <div class="tax-help-hero-search__content reveal">
+            <div class="section-heading">
+              <p class="eyebrow">Official Tax Action Finder</p>
+              <h1>Official Tax Action Finder</h1>
+              <p>Search official federal and state tax links for payments, refunds, notices, forms, payroll, sales tax, EIN, and more.</p>
+            </div>
 
-          <div class="resource-tools reveal" aria-label="Official Tax Action Finder search and filters">
-            <div class="resource-tool-grid">
-              <div class="tax-help-search-field">
-                <label class="search-label" for="tax-help-search">Search official tax actions</label>
-                <input id="tax-help-search" type="search" placeholder="Ask things like NJ refund, CA payment, Texas sales tax, pay IRS, POA, payroll deadlines..." autocomplete="off" />
-                <div class="tax-help-results tax-help-dropdown" aria-live="polite" hidden>
-                  <h3 data-tax-help-heading></h3>
-                  <div data-tax-help-primary></div>
-                  <h3 data-tax-help-related-heading></h3>
-                  <div class="resource-grid resource-grid--finder" data-tax-help-related></div>
-                  <p class="resource-empty" data-tax-help-empty hidden>No matching official tax actions found.</p>
+            <div class="resource-tools" aria-label="Official Tax Action Finder search and filters">
+              <div class="resource-tool-grid">
+                <div class="tax-help-search-field">
+                  <label class="search-label" for="tax-help-search">Search official tax actions</label>
+                  <input id="tax-help-search" type="search" placeholder="Ask things like NJ refund, CA payment, Texas sales tax, pay IRS, POA, payroll deadlines..." autocomplete="off" />
+                  <div class="tax-help-results tax-help-dropdown" aria-live="polite" hidden>
+                    <h3 data-tax-help-heading></h3>
+                    <div data-tax-help-primary></div>
+                    <h3 data-tax-help-related-heading></h3>
+                    <div class="resource-grid resource-grid--finder" data-tax-help-related></div>
+                    <p class="resource-empty" data-tax-help-empty hidden>No matching official tax actions found.</p>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label class="search-label" for="tax-help-state">State</label>
-                <select id="tax-help-state" aria-label="Filter by state">
-                  <option value="all">All States</option>
-                  <option value="Alabama">Alabama</option>
-                  <option value="Alaska">Alaska</option>
-                  <option value="Arizona">Arizona</option>
-                  <option value="Arkansas">Arkansas</option>
-                  <option value="California">California</option>
-                  <option value="Colorado">Colorado</option>
-                  <option value="Connecticut">Connecticut</option>
-                  <option value="Delaware">Delaware</option>
-                  <option value="District of Columbia">District of Columbia</option>
-                  <option value="Florida">Florida</option>
-                  <option value="Georgia">Georgia</option>
-                  <option value="Hawaii">Hawaii</option>
-                  <option value="Idaho">Idaho</option>
-                  <option value="Illinois">Illinois</option>
-                  <option value="Indiana">Indiana</option>
-                  <option value="Iowa">Iowa</option>
-                  <option value="Kansas">Kansas</option>
-                  <option value="Kentucky">Kentucky</option>
-                  <option value="Louisiana">Louisiana</option>
-                  <option value="Maine">Maine</option>
-                  <option value="Maryland">Maryland</option>
-                  <option value="Massachusetts">Massachusetts</option>
-                  <option value="Michigan">Michigan</option>
-                  <option value="Minnesota">Minnesota</option>
-                  <option value="Mississippi">Mississippi</option>
-                  <option value="Missouri">Missouri</option>
-                  <option value="Montana">Montana</option>
-                  <option value="Nebraska">Nebraska</option>
-                  <option value="Nevada">Nevada</option>
-                  <option value="New Hampshire">New Hampshire</option>
-                  <option value="New Jersey">New Jersey</option>
-                  <option value="New Mexico">New Mexico</option>
-                  <option value="New York">New York</option>
-                  <option value="North Carolina">North Carolina</option>
-                  <option value="North Dakota">North Dakota</option>
-                  <option value="Ohio">Ohio</option>
-                  <option value="Oklahoma">Oklahoma</option>
-                  <option value="Oregon">Oregon</option>
-                  <option value="Pennsylvania">Pennsylvania</option>
-                  <option value="Rhode Island">Rhode Island</option>
-                  <option value="South Carolina">South Carolina</option>
-                  <option value="South Dakota">South Dakota</option>
-                  <option value="Tennessee">Tennessee</option>
-                  <option value="Texas">Texas</option>
-                  <option value="Utah">Utah</option>
-                  <option value="Vermont">Vermont</option>
-                  <option value="Virginia">Virginia</option>
-                  <option value="Washington">Washington</option>
-                  <option value="West Virginia">West Virginia</option>
-                  <option value="Wisconsin">Wisconsin</option>
-                  <option value="Wyoming">Wyoming</option>
-                </select>
+                <div>
+                  <label class="search-label" for="tax-help-state">State</label>
+                  <select id="tax-help-state" aria-label="Filter by state">
+                    <option value="all">All States</option>
+                    <option value="Alabama">Alabama</option>
+                    <option value="Alaska">Alaska</option>
+                    <option value="Arizona">Arizona</option>
+                    <option value="Arkansas">Arkansas</option>
+                    <option value="California">California</option>
+                    <option value="Colorado">Colorado</option>
+                    <option value="Connecticut">Connecticut</option>
+                    <option value="Delaware">Delaware</option>
+                    <option value="District of Columbia">District of Columbia</option>
+                    <option value="Florida">Florida</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Hawaii">Hawaii</option>
+                    <option value="Idaho">Idaho</option>
+                    <option value="Illinois">Illinois</option>
+                    <option value="Indiana">Indiana</option>
+                    <option value="Iowa">Iowa</option>
+                    <option value="Kansas">Kansas</option>
+                    <option value="Kentucky">Kentucky</option>
+                    <option value="Louisiana">Louisiana</option>
+                    <option value="Maine">Maine</option>
+                    <option value="Maryland">Maryland</option>
+                    <option value="Massachusetts">Massachusetts</option>
+                    <option value="Michigan">Michigan</option>
+                    <option value="Minnesota">Minnesota</option>
+                    <option value="Mississippi">Mississippi</option>
+                    <option value="Missouri">Missouri</option>
+                    <option value="Montana">Montana</option>
+                    <option value="Nebraska">Nebraska</option>
+                    <option value="Nevada">Nevada</option>
+                    <option value="New Hampshire">New Hampshire</option>
+                    <option value="New Jersey">New Jersey</option>
+                    <option value="New Mexico">New Mexico</option>
+                    <option value="New York">New York</option>
+                    <option value="North Carolina">North Carolina</option>
+                    <option value="North Dakota">North Dakota</option>
+                    <option value="Ohio">Ohio</option>
+                    <option value="Oklahoma">Oklahoma</option>
+                    <option value="Oregon">Oregon</option>
+                    <option value="Pennsylvania">Pennsylvania</option>
+                    <option value="Rhode Island">Rhode Island</option>
+                    <option value="South Carolina">South Carolina</option>
+                    <option value="South Dakota">South Dakota</option>
+                    <option value="Tennessee">Tennessee</option>
+                    <option value="Texas">Texas</option>
+                    <option value="Utah">Utah</option>
+                    <option value="Vermont">Vermont</option>
+                    <option value="Virginia">Virginia</option>
+                    <option value="Washington">Washington</option>
+                    <option value="West Virginia">West Virginia</option>
+                    <option value="Wisconsin">Wisconsin</option>
+                    <option value="Wyoming">Wyoming</option>
+                  </select>
+                </div>
               </div>
             </div>
 
+            <p class="note tax-help-disclaimer">This tool provides general guidance and official government links. It does not provide legal, tax, accounting, or financial advice. Always verify details with official government websites or contact the office for guidance specific to your situation.</p>
           </div>
-
-          <p class="note tax-help-disclaimer reveal">This action-based finder provides general guidance and official government links. It does not provide legal, tax, accounting, or financial advice. Always verify details with official government websites or contact the office for guidance specific to your situation.</p>
+          <div class="page-hero__media reveal">
+            <img src="../assets/images/stock-tax-documents.jpg" alt="Tax documents, calculator, and preparation notes on a clean desk" />
+          </div>
         </div>
       </section>
 
